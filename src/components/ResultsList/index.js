@@ -10,7 +10,9 @@ export default class ResultsList extends Component {
         this.list = null;
     }
     componentDidUpdate() {
-        this.list.scrollTo(0, this.list.scrollHeight);
+        if (this.list) {
+            this.list.scrollTop = this.list.scrollHeight;
+        }
     }
     render() {
         const results = this.props.history.map(({ input, result }, key) =>
