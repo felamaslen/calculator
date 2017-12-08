@@ -1,6 +1,15 @@
 import evaluateInfix from '../lib/evaluate-infix';
 
 export function changeInputValue(state, { value }) {
+    if (!value.length) {
+        return {
+            ...state,
+            input: '',
+            error: false,
+            result: null
+        };
+    }
+
     const nextState = {
         ...state,
         input: value

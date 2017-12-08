@@ -21,18 +21,17 @@ $button-background-color: rgb(86, 0, 55);
             margin: 0;
             padding: 0 3px;
             width: 100%;
+            height: $input-group-height - 1px;
             line-height: $input-group-height;
             font-size: 10pt;
             outline: none;
             background-color: $input-background-color;
             border: none;
-            border-bottom: 1px solid transparent;
+            border-top: 1px solid transparent;
             color: white;
-            border: none;
-            border-radius: 2px;
 
             &.error {
-                border-bottom-color: #c99;
+                border-top-color: #900;
             }
         }
     }
