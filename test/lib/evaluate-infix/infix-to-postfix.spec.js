@@ -42,5 +42,12 @@ describe('Infix to Postfix converter', () => {
         expect(infixToPostfix('(5 + 21) ^ 3 - 10')).to.equal('5 21 + 3 ^ 10 -');
         expect(infixToPostfix('2 ^ (2 ^ 3) - 34 / 2 + 17')).to.equal('2 2 3 ^ ^ 34 2 / - 17 +');
     });
+    it('should not require spaces between numbers and operators', () => {
+        expect(infixToPostfix('1/2 /3')).to.equal('1 2 / 3 /');
+        expect(infixToPostfix('2*3+(5/2)')).to.equal('2 3 * 5 2 / +');
+        expect(infixToPostfix('21-3.2*-5.3')).to.equal('21 3.2 -5.3 * -');
+        expect(infixToPostfix('((3.2*5)*(-20/-3))')).to.equal('3.2 5 * -20 -3 / *');
+        expect(infixToPostfix('2 ^(2^ 3) -34/ 2+17')).to.equal('2 2 3 ^ ^ 34 2 / - 17 +');
+    });
 });
 
