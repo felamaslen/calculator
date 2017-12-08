@@ -9,12 +9,6 @@ describe('UI actions', () => {
         });
     });
 
-    describe('loadInitiated', () => {
-        it('should return LOAD_INITIATED', () => {
-            expect(UA.loadInitiated()).to.deep.equal({ type: A.LOAD_INITIATED });
-        });
-    });
-
     describe('resultLoaded', () => {
         it('should return RESULT_LOADED with response', () => {
             expect(UA.resultLoaded({ foo: 'bar', bar: 'baz' })).to.deep.equal({
