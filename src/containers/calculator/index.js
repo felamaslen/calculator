@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { inputChanged, loadInitiated } from '../../actions/ui.actions';
+import { inputChanged, resultLoaded } from '../../actions/ui.actions';
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onChange: evt => dispatch(inputChanged(evt.target.value)),
-    onLoad: () => dispatch(loadInitiated())
+    onLoad: () => dispatch(resultLoaded())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator);

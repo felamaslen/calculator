@@ -1,4 +1,4 @@
-const { OPERATORS, PRECEDENCE } = require('./operators');
+import OPERATORS, { PRECEDENCE } from './operators';
 
 const BRACKET = 0xB00000;
 
@@ -130,7 +130,7 @@ function processCharsWithBrackets(chars) {
     return [...stacks.items, ...stacks.ops.reverse()];
 }
 
-function infixToPostfix(infix = '2 + 3 * (5 / 2)', level = 0) {
+export default function infixToPostfix(infix = '2 + 3 * (5 / 2)', level = 0) {
     const bracketSections = getBracketSections(infix);
 
     const invalidBrackets = bracketSections.length && bracketSections[bracketSections.length - 1].close === null;
@@ -155,6 +155,4 @@ function infixToPostfix(infix = '2 + 3 * (5 / 2)', level = 0) {
             ), level + 1);
         });
 }
-
-module.exports = infixToPostfix;
 

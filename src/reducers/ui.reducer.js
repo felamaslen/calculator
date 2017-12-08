@@ -1,29 +1,44 @@
-export const changeInputValue = (state, { value }) => ({
-    ...state,
-    input: value
-});
+import evaluateInfix from '../lib/evaluate-infix';
 
-export function loadResult(state, { result, err }) {
-    if (err) {
+export function changeInputValue(state, { value }) {
+    const nextState = {
+        ...state,
+        input: value
+    };
+
+    try {
+        const result = evaluateInfix(value);
+
         return {
-            ...state,
-            result: null,
+            ...nextState,
+            result,
+            error: false
+        };
+    }
+    catch (err) {
+        return {
+            ...nextState,
             error: true
         };
     }
+}
 
-    return {
-        ...state,
-        error: false,
-        history: [
-            ...state.history,
-            {
-                input: state.input,
-                result
-            }
-        ],
-        input: '',
-        result
-    };
+export function loadResult(state) {
+    if (state.result && !state.error) {
+        return {
+            ...state,
+            result: null,
+            input: '',
+            history: [
+                ...state.history,
+                {
+                    input: state.input,
+                    result: state.result
+                }
+            ]
+        };
+    }
+
+    return state;
 }
 

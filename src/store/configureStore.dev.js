@@ -1,15 +1,11 @@
 /* eslint-disable no-underscore-dangle, global-require */
 import { applyMiddleware, createStore, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 
 import { createLogger } from 'redux-logger';
 
-import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 
 import * as A from '../constants/actions';
-
-const sagaMiddleware = createSagaMiddleware();
 
 const SKIP_LOG_ACTIONS = [
     A.INPUT_CHANGED
@@ -22,7 +18,7 @@ const logger = createLogger({
 
 const newStore = initialState => {
     const createStoreWithMiddleware = compose(
-        applyMiddleware(sagaMiddleware, logger)
+        applyMiddleware(logger)
     )(createStore);
 
     const store = createStoreWithMiddleware(
@@ -32,8 +28,6 @@ const newStore = initialState => {
             actionsBlacklist: SKIP_LOG_ACTIONS
         })
     );
-
-    sagaMiddleware.run(rootSaga);
 
     if (module.hot) {
         module.hot.accept('../reducers', () => {

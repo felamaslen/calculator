@@ -1,4 +1,5 @@
-const { OPERATORS } = require('./operators');
+import OPERATORS from './operators';
+import infixToPostfix from './infix-to-postfix';
 
 function evaluatePostfix(raw) {
     if (!raw.length) {
@@ -27,5 +28,14 @@ function evaluatePostfix(raw) {
     return result[0];
 }
 
-module.exports = evaluatePostfix;
+export default function evaluateInfix(raw) {
+    const postfix = infixToPostfix(raw);
 
+    const result = evaluatePostfix(postfix);
+
+    if (result === null || isNaN(result)) {
+        throw new Error('invalid string');
+    }
+
+    return result;
+}
