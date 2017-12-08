@@ -14,7 +14,7 @@
     "lint": "NODE_ENV=test ./node_modules/.bin/eslint src test webpack webpack.config.js"
   },
   "author": "Fela Maslen",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "babel": {
     "env": {
       "production": {
