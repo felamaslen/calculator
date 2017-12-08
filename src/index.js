@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import 'babel-polyfill';
 
 import store from './store';
-import Root from './containers/root';
+import Root from './containers/Root';
 
 function renderApp(RootComponent = Root) {
     render(
@@ -21,8 +21,8 @@ renderApp();
 
 if (module.hot) {
     module.hot.accept(
-        './containers/root',
-        () => renderApp(require('./containers/root').default)
+        './containers/Root',
+        () => renderApp(require('./containers/Root').default)
     );
 }
 
