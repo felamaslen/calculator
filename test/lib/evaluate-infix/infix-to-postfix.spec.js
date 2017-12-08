@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const infixToPostfix = require('../../app/infix-to-postfix');
+import { expect } from 'chai';
+import infixToPostfix from '../../../src/lib/evaluate-infix/infix-to-postfix';
 
 describe('Infix to Postfix converter', () => {
     it('should respect the correct order of operations', () => {
