@@ -10,28 +10,24 @@ import InputGroup from '../../components/InputGroup';
 
 import './style.scss';
 
-export function Calculator({ input, history, result, error, onChange, onLoad }) {
+export function Calculator({ history, ...inputProps }) {
     return <div className="calculator-outer">
         <ResultsList history={history} />
-        <InputGroup onChange={onChange} onLoad={onLoad}
-            error={error} value={input} result={result}
-        />
+        <InputGroup {...inputProps} />
     </div>;
 }
 
 Calculator.propTypes = {
-    input: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     history: PropTypes.array.isRequired,
-    result: PropTypes.number,
     error: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
     onLoad: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-    input: state.input,
+    value: state.input,
     history: state.history,
-    result: state.result,
     error: state.error
 });
 
