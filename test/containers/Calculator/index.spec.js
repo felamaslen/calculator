@@ -12,7 +12,6 @@ describe('<Calculator />', () => {
     const state = {
         history: ['foo'],
         input: '',
-        result: null,
         error: false
     };
 
@@ -37,8 +36,7 @@ describe('<Calculator />', () => {
         expect(wrapper.childAt(1).is(InputGroup)).to.equal(true);
         expect(wrapper.childAt(1).props()).to.deep.include({
             error: false,
-            value: '',
-            result: null
+            value: ''
         });
     });
 

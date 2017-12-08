@@ -9,6 +9,19 @@ $button-background-color: rgb(86, 0, 55);
     width: 100%;
     height: $input-group-height;
     align-items: center;
+    position: relative;
+
+    .result-preview {
+        margin: 5px 2px;
+        padding: 0 5px;
+        position: absolute;
+        bottom: $input-group-height;
+        background: rgba(255, 255, 191, 0.67);
+        color: black;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 2px;
+    }
     
     .input-outer {
         display: flex;
@@ -23,7 +36,7 @@ $button-background-color: rgb(86, 0, 55);
             width: 100%;
             height: $input-group-height - 1px;
             line-height: $input-group-height;
-            font-size: 10pt;
+            font-size: 11pt;
             outline: none;
             background-color: $input-background-color;
             border: none;
