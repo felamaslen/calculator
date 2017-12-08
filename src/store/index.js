@@ -1,5 +1,5 @@
 /* eslint-disable global-require, lines-around-comment */
-import initialState from './initial-state';
+import initialState from '../initialState';
 
 let configStore = null;
 

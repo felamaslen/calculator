@@ -1,0 +1,3 @@
+export const INPUT_CHANGED = 'INPUT_CHANGED';
+export const RESULT_LOADED = 'RESULT_LOADED';
+

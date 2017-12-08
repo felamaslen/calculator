@@ -4,39 +4,9 @@ const express = require('express');
 const winston = require('winston');
 const webpack = require('webpack');
 const { version } = require('../package.json');
-const evaluatePostfix = require('./evaluate-postfix');
-const evaluateInfix = require('./evaluate-infix');
 
 function run() {
     const app = express();
-
-    app.get('/evaluate-postfix', (req, res) => {
-        const raw = decodeURIComponent(req.query.postfix || '');
-
-        try {
-            const result = evaluatePostfix(raw);
-
-            res.json({ result });
-        }
-        catch (err) {
-            res.status(400)
-                .json({ error: true });
-        }
-    });
-
-    app.get('/evaluate-infix', (req, res) => {
-        const raw = decodeURIComponent(req.query.infix || '');
-
-        try {
-            const result = evaluateInfix(raw);
-
-            res.json({ result });
-        }
-        catch (err) {
-            res.status(400)
-                .json({ error: true });
-        }
-    });
 
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, '../src/templates'));
