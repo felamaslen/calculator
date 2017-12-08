@@ -37,8 +37,12 @@ function getBracketSections(infix) {
 }
 
 function getCharsWithBrackets(bracketSections, infix) {
-    if (bracketSections.length > 0) {
-        return bracketSections
+    if (!bracketSections.length) {
+        return infix.split('');
+    }
+
+    return [
+        ...bracketSections
             .reduce(({ items, start }, { open, close }) => ({
                 items: [
                     ...items,
@@ -51,24 +55,21 @@ function getCharsWithBrackets(bracketSections, infix) {
                 items: [],
                 start: 0
             })
-            .items
-            .concat(infix
-                .substring(bracketSections[bracketSections.length - 1].close + 1)
-                .split('')
-            );
-    }
-
-    return infix.split('');
+            .items,
+        ...infix
+            .substring(bracketSections[bracketSections.length - 1].close + 1)
+            .split('')
+    ];
 }
 
 function processCharsWithBrackets(chars) {
+    const charIsMinusSign = index => index < chars.length - 1 &&
+        chars[index] === '-' &&
+        (index === 0 || chars[index - 1] in OPERATORS) &&
+        chars[index + 1].match(/[\d.]/)
+
     const stacks = chars
         .reduce(({ items, ops, continueNumber }, char, index) => {
-            const whitespace = Boolean(typeof char === 'string' && char.match(/\s/));
-            if (whitespace) {
-                return { items, ops, continueNumber: false };
-            }
-
             const isBracket = char === BRACKET;
             if (isBracket) {
                 return {
@@ -78,8 +79,14 @@ function processCharsWithBrackets(chars) {
                 };
             }
 
-            const isOperator = index > 0 && index < chars.length - 1 && char in OPERATORS &&
-                !(chars[index - 1] in OPERATORS) && chars[index + 1].match(/\s/);
+            const isMinusSign = charIsMinusSign(index);
+            const nextIsMinusSign = charIsMinusSign(index + 1);
+
+            const isOperator = index > 0 && index < chars.length - 1 &&
+                !isMinusSign &&
+                char in OPERATORS &&
+                !(chars[index - 1] in OPERATORS) &&
+                !(chars[index + 1] in OPERATORS && !nextIsMinusSign);
 
             if (isOperator) {
                 const poppedOps = ops
@@ -138,7 +145,8 @@ export default function infixToPostfix(infix = '2 + 3 * (5 / 2)', level = 0) {
         throw new Error('invalid string');
     }
 
-    const chars = getCharsWithBrackets(bracketSections, infix);
+    const chars = getCharsWithBrackets(bracketSections, infix)
+        .filter(item => !(typeof item === 'string' && item.match(/\s/)));
 
     const bits = processCharsWithBrackets(chars);
 
