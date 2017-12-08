@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Calculator from '../../containers/calculator';
+import Calculator from '../../containers/Calculator';
 
 import './favicon.png';
 import './style.scss';

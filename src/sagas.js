@@ -1,7 +1,7 @@
 import { fork, takeEvery, select, call, put } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { resultLoaded } from './actions';
+import { resultLoaded } from './actions/ui.actions';
 
 export const selectInputString = state => state.input;
 

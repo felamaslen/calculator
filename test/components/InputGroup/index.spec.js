@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import '../../browser';
 import React from 'react';
 import { shallow } from 'enzyme';
-import InputGroup from '../../../src/components/input-group';
+import InputGroup from '../../../src/components/InputGroup';
 
 describe('<InputGroup />', () => {
     let changed = null;

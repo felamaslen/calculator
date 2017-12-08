@@ -3,8 +3,8 @@ import '../../browser';
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import App from '../../../src/components/app';
-import Calculator from '../../../src/containers/calculator';
+import App from '../../../src/components/App';
+import Calculator from '../../../src/containers/Calculator';
 
 describe('<App />', () => {
     it('should render the app root', () => {

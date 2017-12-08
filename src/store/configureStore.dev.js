@@ -7,10 +7,12 @@ import { createLogger } from 'redux-logger';
 import rootSaga from '../sagas';
 import rootReducer from '../reducers';
 
+import * as A from '../constants/actions';
+
 const sagaMiddleware = createSagaMiddleware();
 
 const SKIP_LOG_ACTIONS = [
-    'INPUT_CHANGED'
+    A.INPUT_CHANGED
 ];
 
 const logger = createLogger({

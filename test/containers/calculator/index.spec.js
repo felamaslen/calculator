@@ -4,9 +4,9 @@ import '../../browser';
 import React from 'react';
 import shallow from '../../shallow-with-store';
 import { createMockStore } from 'redux-test-utils';
-import Calculator from '../../../src/containers/calculator';
-import ResultsList from '../../../src/components/results-list';
-import InputGroup from '../../../src/components/input-group';
+import Calculator from '../../../src/containers/Calculator';
+import ResultsList from '../../../src/components/ResultsList';
+import InputGroup from '../../../src/components/InputGroup';
 
 describe('<Calculator />', () => {
     const state = {

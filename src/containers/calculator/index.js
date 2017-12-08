@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-import { inputChanged, loadInitiated } from '../../actions';
+import { inputChanged, loadInitiated } from '../../actions/ui.actions';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ResultsList from '../../components/results-list';
-import InputGroup from '../../components/input-group';
+import ResultsList from '../../components/ResultsList';
+import InputGroup from '../../components/InputGroup';
 
 import './style.scss';
 

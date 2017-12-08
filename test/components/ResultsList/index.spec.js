@@ -5,7 +5,7 @@ itEach();
 import '../../browser';
 import { shallow } from 'enzyme';
 import React from 'react';
-import ResultsList from '../../../src/components/results-list';
+import ResultsList from '../../../src/components/ResultsList';
 
 describe('<ResultsList />', () => {
     const props = {
