@@ -8,5 +8,13 @@ describe('App actions', () => {
             expect(AA.appLoaded()).to.deep.equal({ type: A.APP_LOADED });
         });
     });
+
+    describe('storedHistoryLoaded', () => {
+        it('should return STORED_HISTORY_LOADED with history', () => {
+            expect(AA.storedHistoryLoaded(['foo', 'bar'])).to.deep.equal({
+                type: A.STORED_HISTORY_LOADED, history: ['foo', 'bar']
+            });
+        });
+    });
 });
 
