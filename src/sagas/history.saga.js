@@ -3,10 +3,7 @@ import * as A from '../constants/actions';
 import * as AA from '../actions/app.actions';
 
 const validateHistory = history => Array.isArray(history) && history.reduce(
-    (valid, item) => valid &&
-        typeof item === 'object' &&
-        typeof item.input === 'string' &&
-        typeof item.result === 'number',
+    (valid, item) => valid && typeof item === 'string',
     true
 );
 
@@ -29,7 +26,8 @@ export function *loadStoredHistory() {
     }
 }
 
-export const selectHistory = state => state.history;
+export const selectHistory = ({ history }) => history
+    .map(({ input }) => input.replace(/\s+/g, ''))
 
 export function *updateStoredHistory() {
     while (true) {

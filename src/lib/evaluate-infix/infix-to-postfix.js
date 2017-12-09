@@ -62,12 +62,12 @@ function getCharsWithBrackets(bracketSections, infix) {
     ];
 }
 
-function processCharsWithBrackets(chars) {
-    const charIsMinusSign = index => index < chars.length - 1 &&
-        chars[index] === '-' &&
-        (index === 0 || chars[index - 1] in OPERATORS) &&
-        chars[index + 1].match(/[\d.]/)
+export const charIsMinusSign = (chars, index) => index < chars.length - 1 &&
+    chars[index] === '-' &&
+    (index === 0 || chars[index - 1] in OPERATORS) &&
+    chars[index + 1].match(/[\d.]/)
 
+function processCharsWithBrackets(chars) {
     const stacks = chars
         .reduce(({ items, ops, continueNumber }, char, index) => {
             const isBracket = char === BRACKET;
@@ -79,8 +79,8 @@ function processCharsWithBrackets(chars) {
                 };
             }
 
-            const isMinusSign = charIsMinusSign(index);
-            const nextIsMinusSign = charIsMinusSign(index + 1);
+            const isMinusSign = charIsMinusSign(chars, index);
+            const nextIsMinusSign = charIsMinusSign(chars, index + 1);
 
             const isOperator = index > 0 && index < chars.length - 1 &&
                 !isMinusSign &&

@@ -5,9 +5,14 @@ describe('App reducer', () => {
     describe('onStoredHistoryLoaded', () => {
         it('should insert the stored history into the state', () => {
             expect(app.onStoredHistoryLoaded({
-            }, { history: ['foo', 'bar'] }))
+            }, {
+                history: ['2+4', '3^4']
+            }))
                 .to.deep.equal({
-                    history: ['foo', 'bar']
+                    history: [
+                        { input: '2 + 4', result: 6 },
+                        { input: '3 ^ 4', result: 81 }
+                    ]
                 });
         });
     });

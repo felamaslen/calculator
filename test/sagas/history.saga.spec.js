@@ -14,8 +14,8 @@ describe('History saga', () => {
                 .take(A.APP_LOADED)
                 .next()
                 .call([localStorage, 'getItem'], 'history')
-                .next(JSON.stringify([{ input: 'foo', result: 10 }]))
-                .put(AA.storedHistoryLoaded([{ input: 'foo', result: 10 }]))
+                .next(JSON.stringify(['5*2']))
+                .put(AA.storedHistoryLoaded(['5*2']))
                 .next()
                 .isDone();
         });
@@ -42,8 +42,13 @@ describe('History saga', () => {
     });
 
     describe('selectHistory', () => {
-        it('should get the history from the state', () => {
-            expect(S.selectHistory({ history: ['foo', 'bar'] })).to.deep.equal(['foo', 'bar']);
+        it('should get the command history from the state', () => {
+            expect(S.selectHistory({
+                history: [
+                    { input: '2 + 4', result: 6 },
+                    { input: '3 ^4', result: 81 }
+                ]
+            })).to.deep.equal(['2+4', '3^4']);
         });
     });
 
