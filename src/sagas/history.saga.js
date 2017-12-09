@@ -28,6 +28,9 @@ export function *loadStoredHistory() {
 
 export const selectHistory = ({ history }) => history
     .map(({ input }) => input.replace(/\s+/g, ''))
+    .reverse()
+    .slice(0, 100)
+    .reverse()
 
 export function *updateStoredHistory() {
     while (true) {

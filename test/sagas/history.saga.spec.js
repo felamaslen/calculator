@@ -50,6 +50,13 @@ describe('History saga', () => {
                 ]
             })).to.deep.equal(['2+4', '3^4']);
         });
+
+        it('should limit the history length to 100 commands', () => {
+            expect(S.selectHistory({
+                history: new Array(1000)
+                    .fill({ input: '2 + 4', result: 6 })
+            })).to.have.length(100);
+        });
     });
 
     describe('updateStoredHistory', () => {
