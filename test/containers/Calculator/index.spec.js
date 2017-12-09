@@ -27,7 +27,7 @@ describe('<Calculator />', () => {
         const wrapper = shallow(<Calculator />, createMockStore(state)).dive();
 
         expect(wrapper.childAt(0).is(ResultsList)).to.equal(true);
-        expect(wrapper.childAt(0).props()).to.deep.equal({ history: ['foo'] });
+        expect(wrapper.childAt(0).props()).to.deep.include({ history: ['foo'] });
     });
 
     it('should render an input group', () => {
@@ -50,6 +50,18 @@ describe('<Calculator />', () => {
         wrapper.childAt(1).props().onChange({ target: { value: 'foo' } });
 
         expect(store.isActionDispatched({ type: 'INPUT_CHANGED', value: 'foo' })).to.equal(true);
+    });
+
+    it('should dispatch an appLoaded event when the results list is loaded', () => {
+        const store = createMockStore(state);
+
+        const wrapper = shallow(<Calculator />, store).dive();
+
+        expect(store.isActionDispatched({ type: 'APP_LOADED' })).to.equal(false);
+
+        wrapper.childAt(0).props().onLoad();
+
+        expect(store.isActionDispatched({ type: 'APP_LOADED' })).to.equal(true);
     });
 });
 

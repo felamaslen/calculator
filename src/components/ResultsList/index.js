@@ -9,6 +9,9 @@ export default class ResultsList extends Component {
 
         this.list = null;
     }
+    componentDidMount() {
+        this.props.onLoad();
+    }
     componentDidUpdate() {
         if (this.list) {
             this.list.scrollTop = this.list.scrollHeight;
@@ -33,6 +36,7 @@ export default class ResultsList extends Component {
 }
 
 ResultsList.propTypes = {
-    history: PropTypes.array.isRequired
+    history: PropTypes.array.isRequired,
+    onLoad: PropTypes.func.isRequired
 };
 

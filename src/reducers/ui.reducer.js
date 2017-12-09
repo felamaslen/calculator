@@ -1,3 +1,4 @@
+import formatInfix from '../lib/format-infix';
 import evaluateInfix from '../lib/evaluate-infix';
 
 export function changeInputValue(state, { value }) {
@@ -41,7 +42,7 @@ export function loadResult(state) {
             history: [
                 ...state.history,
                 {
-                    input: state.input,
+                    input: formatInfix(state.input),
                     result: state.result
                 }
             ]

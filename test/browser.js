@@ -13,6 +13,11 @@ global.window = (new JSDOM('')).window;
 window.document.requestFullscreen = () => null;
 window.document.exitFullscreen = () => null;
 
+window.localStorage = {
+    getItem: () => null,
+    setItem: () => null
+};
+
 global.document = window.document;
 
 global.HTMLElement = function HTMLElement() {

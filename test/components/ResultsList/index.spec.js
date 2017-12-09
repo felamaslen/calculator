@@ -3,24 +3,30 @@ import { expect } from 'chai';
 import itEach from 'it-each';
 itEach();
 import '../../browser';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import React from 'react';
 import ResultsList from '../../../src/components/ResultsList';
 
 describe('<ResultsList />', () => {
+    let key = null;
+    let loaded = null;
+
     const props = {
         history: [
             { input: 'foo', result: 'bar' },
             { input: 'baz', result: 'bak' }
-        ]
+        ],
+        onLoad: () => {
+            loaded = true;
+        }
     };
 
-    let key = null;
     beforeEach(() => {
         key = 0;
     });
     afterEach(() => {
         key = null;
+        loaded = null;
     });
 
     it('should render its basic structure', () => {
@@ -43,6 +49,14 @@ describe('<ResultsList />', () => {
         expect(wrapper.childAt(key).childAt(1).text()).to.equal(result);
 
         key++;
+    });
+
+    it('should run appLoaded() on mount', () => {
+        expect(loaded).to.equal(null);
+
+        mount(<ResultsList {...props} />);
+
+        expect(loaded).to.equal(true);
     });
 });
 
